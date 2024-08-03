@@ -12,10 +12,10 @@ public class Produto {
     @Override
     public String toString() {
         return "Produto: {" +
-                "\n  codigo:" + codigo +
-                ",\n  descricao:'" + descricao + '\'' +
-                ",\n  preco:" + preco +
-                "\n}";
+                "codigo:" + codigo +
+                ", descricao:'" + descricao + '\'' +
+                ", preco:" + preco +
+                "}";
     }
 
     public int getCodigo() {

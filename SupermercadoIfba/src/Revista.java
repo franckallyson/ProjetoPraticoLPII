@@ -9,7 +9,6 @@ public class Revista implements Serializable {
 
     private HorariosRevista horarios;
 
-    public Revista() {}
 
     public Revista(String titulo, Integer numerEdicao, Integer mes, Integer ano, Integer nVolume) {
         this.titulo = titulo;
@@ -17,6 +16,7 @@ public class Revista implements Serializable {
         this.mes = mes;
         this.ano = ano;
         this.nVolume = nVolume;
+        horarios = new HorariosRevista();
     }
 
     public String getTitulo() {
@@ -65,5 +65,17 @@ public class Revista implements Serializable {
 
     public void setHorarios(HorariosRevista horarios) {
         this.horarios = horarios;
+    }
+
+    @Override
+    public String toString() {
+        return "\nRevista{" +
+                "titulo='" + titulo + '\'' +
+                ", numerEdicao=" + numerEdicao +
+                ", mes=" + mes +
+                ", ano=" + ano +
+                ", nVolume=" + nVolume +
+                ", horarios=" + horarios +
+                '}';
     }
 }
