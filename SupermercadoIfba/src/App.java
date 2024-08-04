@@ -1,9 +1,15 @@
 import java.io.*;
-import java.math.BigDecimal;
-import java.sql.SQLOutput;
 import java.text.DecimalFormat;
 import java.util.*;
 
+/**
+ * Classe principal da aplicação do Supermercado IFBA.
+ *
+ * Esta classe gerencia as operações principais do sistema, incluindo carregamento e gravação de dados,
+ * menu principal, checkout, cadastro e consulta de produtos e revistas.
+ *
+ * @autor franck.allyson, pedro.lopes, ana.carolina, clarisse.santana
+ */
 public class App {
     public static final String CAMINHO_ARQUIVO_PRODUTOS = "./SupermercadoIfba/Arquivos/produtos.txt";
     public static final String CAMINHO_ARQUIVO_REV = "./SupermercadoIfba/Arquivos/pilhas_revistas.txt";
@@ -11,6 +17,11 @@ public class App {
     public static Deque<Revista> revistasEmpilhadas = new ArrayDeque<Revista>();
     public static Deque<Revista> revistasDesempilhadas = new ArrayDeque<Revista>();
 
+    /**
+     * Método principal que inicia a aplicação.
+     *
+     * @param args Argumentos de linha de comando (não utilizados).
+     */
     public static void main(String args[]){
         carregaRevistas();
         carregaProdutos();
@@ -44,6 +55,9 @@ public class App {
         gravaRevistas(revistasEmpilhadas, revistasDesempilhadas);
     }
 
+    /**
+     * Carrega as revistas empilhadas e desempilhadas a partir do arquivo.
+     */
     public static void carregaRevistas(){
         FileInputStream fluxoArquivo;
         ObjectInputStream fluxoObjeto;
@@ -63,6 +77,13 @@ public class App {
 
 
     }
+
+    /**
+     * Grava as revistas empilhadas e desempilhadas no arquivo.
+     *
+     * @param revEmp Deque de revistas empilhadas.
+     * @param revDesemp Deque de revistas desempilhadas.
+     */
     public static void gravaRevistas(Deque<Revista> revEmp, Deque<Revista> revDesemp){
         FileOutputStream fluxoArquivo;
         ObjectOutputStream fluxoObjeto;
@@ -80,6 +101,10 @@ public class App {
         }
 
     }
+
+    /**
+     * Carrega os produtos a partir do arquivo de produtos.
+     */
     public static void carregaProdutos(){
         Scanner scan;
         int code;
@@ -110,6 +135,11 @@ public class App {
         scan.close();
     }
 
+    /**
+     * Grava um novo produto no arquivo de produtos.
+     *
+     * @param produto Produto a ser gravado.
+     */
     public static void gravaProdutos(Produto produto){
         try {
             FileWriter fluxoArquivo = new FileWriter(CAMINHO_ARQUIVO_PRODUTOS, true);
@@ -124,6 +154,9 @@ public class App {
 
     }
 
+    /**
+     * Exibe o cabeçalho do menu principal.
+     */
     public static void headerMenu(){
         System.out.println();
         System.out.println((char)27 + "[36m*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
@@ -133,6 +166,12 @@ public class App {
 
     }
 
+    /**
+     * Exibe e processa as opções do menu principal.
+     *
+     * @param scan Scanner para leitura da entrada do usuário.
+     * @return Opção escolhida pelo usuário.
+     */
     public static int opcoesMenuPrincipal(Scanner scan){
 
         int option = -1;
@@ -166,6 +205,12 @@ public class App {
         return option;
     }
 
+    /**
+     * Exibe e processa as opções do menu de checkout.
+     *
+     * @param scan Scanner para leitura da entrada do usuário.
+     * @return Opção escolhida pelo usuário.
+     */
     public static int menuCheckout(Scanner scan){
 
         int opt = -1;
@@ -197,6 +242,12 @@ public class App {
         return opt;
     }
 
+    /**
+     * Exibe e processa as opções do menu de consulta de revistas.
+     *
+     * @param scan Scanner para leitura da entrada do usuário.
+     * @return Opção escolhida pelo usuário.
+     */
     public static int menuConsultaRevistas(Scanner scan){
         int opt = -1;
         do{
@@ -230,6 +281,13 @@ public class App {
         scan.nextLine();
         return opt;
     }
+
+    /**
+     * Exibe e processa as opções do menu de relatorio de revistas.
+     *
+     * @param scan Scanner para leitura da entrada do usuário.
+     * @return Opção escolhida pelo usuário.
+     */
     public static int menuRelatorioRevistas(Scanner scan){
         int opt = -1;
         do{
@@ -253,6 +311,11 @@ public class App {
         return opt;
     }
 
+    /**
+     * Processa o fluxo de checkout.
+     *
+     * @param scan Scanner para leitura da entrada do usuário.
+     */
     public static void checkout(Scanner scan){
         int opt;
         Pedido pedido = new Pedido();
@@ -280,6 +343,11 @@ public class App {
 
     }
 
+    /**
+     * Consulta e exibe informações das revistas no sistema.
+     *
+     * @param scan Scanner para leitura da entrada do usuário.
+     */
     public static void consultarRevistas(Scanner scan){
         int opt = -1;
         Revista revista;
@@ -317,27 +385,36 @@ public class App {
                     System.out.println((char)27 + "[32m Tempo Médio de Permancencia: " + tempo_formatado);
                     break;
                 case 4:
-                    int optRelat = menuRelatorioRevistas(scan);
-                    switch (optRelat){
-                        case 1:
-                            relatorioRevistaEmpilhadas(true);
-                            break;
-                        case 2:
-                            relatorioRevistaEmpilhadas(false);
-                            break;
+                    if(revistasEmpilhadas.size() > 0){
+                        int optRelat = menuRelatorioRevistas(scan);
+                        switch (optRelat){
+                            case 1:
+                                relatorioRevistaEmpilhadas(true);
+                                break;
+                            case 2:
+                                relatorioRevistaEmpilhadas(false);
+                                break;
+                        }
+                    }else{
+                        System.out.println((char)27 + "[33m\n[WARNING] Não há revistas empilhadas!");
                     }
 
                     break;
                 case 5:
-                    int optRelatDes = menuRelatorioRevistas(scan);
-                    switch (optRelatDes){
-                        case 1:
-                            relatorioRevistaDesempilhadas(true);
-                            break;
-                        case 2:
-                            relatorioRevistaDesempilhadas(false);
-                            break;
+                    if(revistasDesempilhadas.size() > 0){
+                        int optRelatDes = menuRelatorioRevistas(scan);
+                        switch (optRelatDes){
+                            case 1:
+                                relatorioRevistaDesempilhadas(true);
+                                break;
+                            case 2:
+                                relatorioRevistaDesempilhadas(false);
+                                break;
+                        }
+                    }else{
+                        System.out.println((char)27 + "[33m\n[WARNING] Não há revistas empilhadas!");
                     }
+
                     break;
 
             }
@@ -345,6 +422,11 @@ public class App {
 
     }
 
+    /**
+     * Existe uma relação das Revistas Desempilhadas por ano de publicação
+     *
+     * @param detalhado Boleano para definir se a revista irá ser mostrada detalhadamente
+     */
     public static void relatorioRevistaDesempilhadas(boolean detalhado){
         HashMap<Integer, List<Revista>> mapAnos= new HashMap<Integer, List<Revista>>();
 
@@ -362,7 +444,7 @@ public class App {
                 System.out.println((char)27 + "[95m--------------------");
                 System.out.println("Revistas Ano de "+ key);
                 System.out.println(value);
-                System.out.println("Um total de " + value.size() + " revista(s) em " + key);
+                System.out.println("Um total de " + value.size() + " revista(s) de " + key);
             });
         }else{
             mapAnos.forEach((key, value) -> {
@@ -371,11 +453,16 @@ public class App {
                 for(Revista revista: value){
                     System.out.println("Titulo da Revista: " + revista.getTitulo() + " | Numero Edição: " + revista.getNumerEdicao()+ " | Número do Volume: " + revista.getnVolume());
                 }
-                System.out.println("Um total de " + value.size() + " revista(s) em " + key);
+                System.out.println("Um total de " + value.size() + " revista(s) de " + key);
             });
         }
     }
 
+    /**
+     * Existe uma relação das Revistas Empilhadas por ano de publicação
+     *
+     * @param detalhado Boleano para definir se a revista irá ser mostrada detalhadamente
+     */
     public static void relatorioRevistaEmpilhadas(boolean detalhado){
         HashMap<Integer, List<Revista>> mapAnos= new HashMap<Integer, List<Revista>>();
 
@@ -393,7 +480,7 @@ public class App {
                 System.out.println((char)27 + "[95m--------------------");
                 System.out.println("Revistas Ano de "+ key);
                 System.out.println(value);
-                System.out.println("Um total de " + value.size() + " revista(s) em " + key);
+                System.out.println("Um total de " + value.size() + " revista(s) de " + key);
             });
         }else{
             mapAnos.forEach((key, value) -> {
@@ -402,11 +489,16 @@ public class App {
                 for(Revista revista: value){
                     System.out.println("Titulo da Revista: " + revista.getTitulo() + " | Numero Edição: " + revista.getNumerEdicao()+ " | Número do Volume: " + revista.getnVolume());
                 }
-                System.out.println("Um total de " + value.size() + " revista(s) em " + key);
+                System.out.println("Um total de " + value.size() + " revista(s) de " + key);
             });
         }
     }
 
+    /**
+     * Cadastra um novo produto no sistema.
+     *
+     * @param scan Scanner para leitura da entrada do usuário.
+     */
     public static void cadastrarProdutos(Scanner scan){
         int code;
         double preco;
@@ -436,6 +528,14 @@ public class App {
             System.out.println((char)27 + "[31m\n[ERRO] Você digitou um valor inválido, tente novamente!");
         }
     }
+
+    /**
+     * Busca produto pelo HashMap
+     *
+     * @param scan Scanner para receber o codigo do produto pelo usuário
+     * @param produtos HashMap contendo os produtos associados aos códigos
+     * @return Produto encontrado ou Null
+     */
     public static Produto buscaProduto(Scanner scan, HashMap<Integer, Produto> produtos){
         int code;
         while(true){
@@ -459,6 +559,13 @@ public class App {
         return null;
     }
 
+    /**
+     * Adiciona um produto no pedido
+     *
+     * @param scan Scanner para solicitar informações ao usuário
+     * @param pedido Pedido que receberá o produto
+     * @param produto Produto a ser inserido no pedido
+     */
     public static void adicionarItemCheckout(Scanner scan, Pedido pedido, Produto produto){
 
         int quantidade;
@@ -478,6 +585,12 @@ public class App {
 
     }
 
+    /**
+     * Cadastra uma nova revista no sistema.
+     *
+     * @param scan Scanner para leitura da entrada do usuário.
+     * @param pilhaRevista Deque de revistas empilhadas.
+     */
     public static void cadastrarRevista(Scanner scan, Deque<Revista> pilhaRevista){
         String titulo;
         int numerEdicao;
@@ -514,6 +627,12 @@ public class App {
         }
     }
 
+    /**
+     * Função para distribuição das revistas com base no pedido realizado.
+     * A cada R$ 100.00 uma revista é entregue, caso a pilha possua.
+     *
+     * @param pedido Pedido que foi realizado pelos clientes
+     */
     public static void distribuiBrinde(Pedido pedido){
         if(pedido.getValorTotalPedido() > 100.0){
             double qtdBrindes = pedido.getValorTotalPedido()/100;
