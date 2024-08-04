@@ -10,6 +10,7 @@ public class HorariosRevista implements Serializable {
     public HorariosRevista() {
         horarioEmpilhamento = null;
         horarioDesempilhamento = null;
+        tempoEmpilhado = 0d;
     }
 
     public Date getHorarioEmpilhamento() {
@@ -30,8 +31,10 @@ public class HorariosRevista implements Serializable {
         }
 
         this.horarioDesempilhamento = horarioDesempilhamento;
-        long diferenca = horarioEmpilhamento.getTime() - horarioDesempilhamento.getTime();
-        tempoEmpilhado = diferenca / 1000 / 60/ 60;
+
+        long diferenca = horarioDesempilhamento.getTime() - horarioEmpilhamento.getTime();
+
+        tempoEmpilhado = (double)diferenca / 1000;
     }
 
     public double getTempoEmpilhado() {
@@ -40,10 +43,13 @@ public class HorariosRevista implements Serializable {
 
     @Override
     public String toString() {
-        return "HorariosRevista{" +
-                "horarioEmpilhamento=" + horarioEmpilhamento +
-                ", horarioDesempilhamento=" + horarioDesempilhamento +
-                ", tempoEmpilhado=" + tempoEmpilhado +
-                '}';
+        int horas = (int) (tempoEmpilhado / 3600);
+        int minutos = (int) ((tempoEmpilhado % 3600) / 60);
+        int segundos = (int) (tempoEmpilhado % 60);
+        String tempo_formatado = String.format("%02d:%02d:%02d", horas, minutos, segundos);
+
+        return "Empilhamento: " + horarioEmpilhamento +
+                ", Desempilhamento: " + horarioDesempilhamento +
+                ",  Tempo de permanencia na pilha: " + tempo_formatado;
     }
 }

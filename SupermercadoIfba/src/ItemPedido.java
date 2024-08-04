@@ -8,7 +8,7 @@ public class ItemPedido {
     public ItemPedido(Produto produto, int quantidade) {
         this.produto = produto;
         this.quantidade = quantidade;
-        this.valorTotal = produto.preco * quantidade;
+        this.valorTotal = produto.getPreco() * quantidade;
     }
 
     public double getValorTotal() {
@@ -27,10 +27,9 @@ public class ItemPedido {
     public String toString() {
 
 
-        return "\nItemPedido{" +
-                "produto: " + produto +
-                ", quantidade: " + quantidade +
-                ", valorTotal: " + String.format("%.2f", valorTotal).replace(",", ".") +
+        return "\n   {Produto: " + produto +
+                ", Quantidade: " + quantidade +
+                ", Valor Total: " + String.format("%.2f", valorTotal).replace(",", ".") +
                 "}";
     }
 }

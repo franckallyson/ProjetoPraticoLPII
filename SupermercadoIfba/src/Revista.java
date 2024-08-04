@@ -69,13 +69,12 @@ public class Revista implements Serializable {
 
     @Override
     public String toString() {
-        return "\nRevista{" +
-                "titulo='" + titulo + '\'' +
-                ", numerEdicao=" + numerEdicao +
-                ", mes=" + mes +
-                ", ano=" + ano +
-                ", nVolume=" + nVolume +
-                ", horarios=" + horarios +
+        return "\nTitulo da Revista: '" + titulo +
+                " | Número de Edição: " + numerEdicao +
+                " | Mês de Publicação: " + mes +
+                " | Ano de Publicação: " + ano +
+                " | Número do Volume: " + nVolume +
+                " | Horários: " + horarios +
                 '}';
     }
 }

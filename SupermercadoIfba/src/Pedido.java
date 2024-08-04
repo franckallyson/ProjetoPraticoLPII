@@ -30,9 +30,9 @@ public class Pedido {
     @Override
     public String toString() {
 
-        return "\nPedido: \n{" +
-                "\n   itensPedido: " + itensPedido +
-                "\n   valorTotalPedido: " + String.format("%.2f", valorTotalPedido).replace(",", ".") +
+        return "\nPedido: {" +
+                "\nitensPedido: " + itensPedido +
+                "\nvalorTotalPedido: " + String.format("%.2f", valorTotalPedido).replace(",", ".") +
                 "\n}\n";
     }
 }

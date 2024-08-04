@@ -1,7 +1,7 @@
 public class Produto {
-    int codigo;
-    String descricao;
-    double preco;
+    private int codigo;
+    private String descricao;
+    private double preco;
 
     public Produto(int codigo, String descricao, double preco) {
         this.codigo = codigo;
@@ -11,10 +11,9 @@ public class Produto {
 
     @Override
     public String toString() {
-        return "Produto: {" +
-                "codigo:" + codigo +
-                ", descricao:'" + descricao + '\'' +
-                ", preco:" + preco +
+        return "Codigo:" + codigo +
+                ", Descricao:'" + descricao + '\'' +
+                ", Preco Unitario:" + preco +
                 "}";
     }
 

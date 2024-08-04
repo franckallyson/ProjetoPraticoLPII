@@ -37,3 +37,6 @@
 0037;Creme de Leite 200g;2,49
 0038;Maionese 500g;4,98
 0039;Vodca 998ml;29,90
+0040;Descricao adicao teste;10,90
+0041;Teste adicao 2;20,30
+0042;teste adicao 3;40,55
