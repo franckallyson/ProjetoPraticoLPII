@@ -1,22 +1,22 @@
+Aqui está a versão atualizada do README com as seções adicionais para Javadocs e execução:
 
 ---
 
-# Supermercado Ifba - Sistema de Checkout e Cadastro de Revistas
+# Supermercado IFBA
 
-## Descrição do Projeto
-
-Este projeto implementa um sistema para um supermercado que oferece uma revista de brinde para cada R$ 100,00 em compras realizadas. As revistas são oriundas de uma coleção particular dos proprietários e devem ser cadastradas e gerenciadas pelo sistema. O projeto permite a manipulação da pilha de revistas e o processamento de compras para determinar a quantidade de revistas a ser dada como brinde.
+Este projeto é uma aplicação para um pequeno supermercado que oferece uma revista como brinde a cada R$ 100,00 de compra. O sistema permite o cadastro e manipulação de revistas e produtos, além de realizar o checkout das compras dos clientes.
 
 ## Funcionalidades
 
-- **Cadastro de Produtos**: Gerencia um catálogo de mercadorias com preços fixos.
-- **Checkout de Compras**: Permite a realização de compras, calculando o valor total e determinando a quantidade de revistas que o cliente ganhará como brinde.
-- **Cadastro de Revistas**: Adiciona novas revistas ao estoque e gerencia a pilha de revistas disponíveis.
-- **Relatórios de Revistas**: Gera relatórios detalhados e resumidos sobre as revistas empilhadas e desempilhadas.
+- **Cadastro e Manipulação de Revistas**: Permite o cadastro de revistas com título, número de edição, mês e ano de publicação, e número de volume. As revistas são empilhadas e podem ser consultadas ou retiradas durante o checkout.
 
-## Dados dos Produtos
+- **Cadastro e Manipulação de Produtos**: Produtos com preços fixos são cadastrados e utilizados para calcular o valor total da compra.
 
-O sistema inclui um catálogo de produtos com os seguintes itens e preços:
+- **Checkout**: Durante o checkout, o sistema calcula o valor total da compra e distribui as revistas de brinde com base no valor da compra.
+
+## Produtos Disponíveis
+
+Aqui estão os produtos disponíveis para compra e seus respectivos preços:
 
 ```
 0001;Açúcar Refinado 1Kg;2,15
@@ -60,44 +60,63 @@ O sistema inclui um catálogo de produtos com os seguintes itens e preços:
 0039;Vodca 998ml;29,90
 ```
 
-## Requisitos
-
-- Java 8 ou superior
-- IDE de sua escolha (e.g., IntelliJ IDEA, Eclipse)
-- JDK configurado
-
 ## Executando o Projeto
 
-1. **Clonar o repositório**:
-   ```sh
-   git clone https://github.com/seu_usuario/supermercado-ifba.git
+Para rodar o projeto localmente, siga os passos abaixo:
+
+1. **Clone o Repositório**:
+
+   ```bash
+   git clone <url-do-repositorio>
+   cd <nome-do-repositorio>
    ```
 
-2. **Compilar o projeto**:
-   Navegue até o diretório do projeto e compile com:
-   ```sh
+2. **Compile o Projeto**:
+
+   Certifique-se de ter o Java instalado e configure seu ambiente:
+
+   ```bash
    javac -d bin src/*.java
    ```
 
-3. **Executar o projeto**:
-   Navegue até o diretório `bin` e execute:
-   ```sh
+3. **Execute a Aplicação**:
+
+   Navegue até o diretório `bin` e execute a aplicação:
+
+   ```bash
    java App
    ```
 
-## Estrutura do Código
+## Javadocs
 
-- **`App`**: Classe principal que gerencia o fluxo do sistema, incluindo a carga e gravação de dados, manipulação de revistas e processo de checkout.
-- **`Produto`**: Representa um produto disponível para compra, com atributos como código, descrição e preço.
-- **`Revista`**: Representa uma revista, incluindo título, número de edição, mês, ano de publicação e número de volume.
-- **`Pedido`**: Gerencia a lista de itens comprados e calcula o valor total do pedido.
+Para acessar a documentação completa do projeto, visite [Javadocs do Projeto](https://franckallyson.github.io/ProjetoPraticoLPII/JavaDocProjeto/).
+
+## Prints Demonstrativos
+
+A seguir, apresentamos alguns prints demonstrativos do funcionamento da aplicação:
+
+1. **Menu Principal**:
+
+   ![Menu Principal](JavaDocProjeto/menu_principal_demonstracao.png)
+
+2. **Tela de Checkout**:
+
+   ![Tela de Checkout](JavaDocProjeto/checkout_demonstracao.png)
+
+3. **Consulta de Revistas**:
+
+   ![Consulta de Revistas](JavaDocProjeto/consulta_revistas_demonstracao.png)
+
+4. **Cadastro de Produto**:
+
+   ![Cadastro de Produto](JavaDocProjeto/cadastro_produtos_demonstracao.png)
 
 ## Contribuições
 
-Sinta-se à vontade para contribuir para o projeto, abrir issues ou enviar pull requests.
+Se desejar contribuir para o projeto, sinta-se à vontade para fazer um fork e enviar pull requests. Para sugestões e melhorias, por favor, abra uma issue no repositório.
 
 ## Licença
 
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Este projeto está licenciado sob a [MIT License](LICENSE).
 
 ---
