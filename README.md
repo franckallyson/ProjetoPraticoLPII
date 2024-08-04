@@ -14,6 +14,8 @@ Este projeto é uma aplicação para um pequeno supermercado que oferece uma rev
 
 - **Checkout**: Durante o checkout, o sistema calcula o valor total da compra e distribui as revistas de brinde com base no valor da compra.
 
+- **Manipulação de Arquivos**: Para manutenção de dados tanto de produtos quanto das pilhas de revistas, foi utilizado a Manipulação de arquivos tanto gravando em texto, como no arquivo SupermercadoIfba/Arquivos/produtos.txt, quanto gravando a estrutura inteira de pilha, como no arquivo SupermercadoIfba/Arquivos/pilha_revistas.txt
+
 ## Produtos Disponíveis
 
 Aqui estão os produtos disponíveis para compra e seus respectivos preços:
